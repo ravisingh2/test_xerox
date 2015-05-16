@@ -29,10 +29,27 @@ class test
 	{
 	  echo $str1.$str2;//'concate to String' 
 	}
+	
+/**
+ *  return the inverse of number
+ * @param int $x
+ */	
+	function inverse($x)
+	{
+		if (!$x) {
+			throw new Exception('Division by zero.');
+		}
+		return 1/$x;
+	}
 }
 
 class ChildClass extends Test
 {
+    
+/**
+ * Print string
+ * @param string $string
+ */
     public function printChild($string)
     {
         echo $string;
@@ -46,5 +63,10 @@ $Test->printParent();       // Output: 'This is parent class function'
 $ChildClass->printChild('This is child class function'); // Output: 'This is child class function'
 $ChildClass->printParent();       // Output: 'This is parent class function'
 $ChildClass->concateString('string1', ' string2');      // Output: 'string1 string2'
-
+try {
+    echo $ChildClass->inverse(5) . "\n";
+    echo $ChildClass->inverse(0) . "\n";
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
 ?>
